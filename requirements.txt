@@ -1,0 +1,6 @@
+streamlit
+langchain
+langchain-groq
+yfinance
+duckduckgo-search
+python-dotenv
