@@ -23,7 +23,7 @@ if user_input:
 
     with st.chat_message("assistant"):
         with st.spinner("Analyzing..."):
-            answer = run_agent(user_input)
+            answer = run_agent(user_input, st.session_state.messages)
         st.markdown(answer)
 
         ticker = None
@@ -31,6 +31,21 @@ if user_input:
             if ".NS" in word or ".BO" in word:
                 ticker = word
                 break
+
+        if not ticker:
+            for word in answer.upper().split():
+                if ".NS" in word or ".BO" in word:
+                    ticker = word
+                    break
+
+                if word in ["TSLA", "AAPL", "MSFT", "GOOGL", "AMZN", "META", "NVDA"]:
+                    ticker = word
+                    break
+
+        if ticker:
+            st.session_state.last_ticker = ticker
+        elif "last_ticker" in st.session_state:
+            ticker = st.session_state.last_ticker
 
         if ticker:
             data = yf.Ticker(ticker).history(period="1y")

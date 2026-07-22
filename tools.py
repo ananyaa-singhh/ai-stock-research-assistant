@@ -182,3 +182,29 @@ def get_stock_chart(ticker: str) -> str:
         return str({"dates": dates, "prices": prices, "ticker": ticker})
     except Exception as e:
         return f"Error fetching chart data: {str(e)}"
+
+@tool        
+def get_stock_fundamentals(ticker: str) -> str:
+    """
+    Fetches detailed fundamental data for a stock, including last dividend, 
+    ,earnings dates, analyst recommendations/upgrades/downgrades,.
+    For Inidan stocks use .NS suffix eg. 'TCS.NS'
+    For US stocks just use ticker eg.'AAPL'
+    """
+    try:
+        stock=yf.Ticker(ticker)
+        info=stock.info
+        dividends=stock.dividends    #shares of company's profit paid to shareholders
+        earnings_dates=stock.earnings_dates #quarterly earnings report dates
+        recommendations=stock.recommendations #analyst recommendations
+
+        last_dividend=dividends.iloc[-1] if not dividends.empty else "N/A"
+        
+        return str({
+            "ticker": ticker,
+            "last_dividend": str(last_dividend),    #str beacuse LLM can read it easily 
+            "earnings_dates":str(earnings_dates.head(3)) if earnings_dates is not None else "N/A",
+            "recommendations": str(recommendations.head(3)) if recommendations is not None else "N/A"
+        })
+    except Exception as e :
+        return f"Error fetching fundamanetals for {ticker}:{str(e)}"
