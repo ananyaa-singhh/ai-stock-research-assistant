@@ -1,6 +1,9 @@
 streamlit
 langchain
+langchain-community
 langchain-groq
+langchain-core
 yfinance
 duckduckgo-search
 python-dotenv
+plotly
