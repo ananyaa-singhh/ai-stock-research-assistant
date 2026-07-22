@@ -1,8 +1,8 @@
 streamlit
-langchain==0.3.25
-langchain-community==0.3.24
-langchain-groq==0.3.2
-langchain-core==0.3.60
+langchain==0.2.16
+langchain-community==0.2.16
+langchain-groq==0.1.9
+langchain-core==0.2.38
 yfinance
 duckduckgo-search
 python-dotenv
