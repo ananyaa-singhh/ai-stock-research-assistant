@@ -1,5 +1,6 @@
 from langchain_groq import ChatGroq
-from langchain.agents import create_tool_calling_agent, AgentExecutor
+from langchain.agents import AgentExecutor
+from langchain_core.agents import create_tool_calling_agent
 from langchain.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 import os
