@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import yfinance as yf
 
 st.set_page_config(page_title="Nivesh Copilot", page_icon="📈", layout="centered")
-st.title("📈 Nivesh Copilot")
+st.title("📈 StockSense AI")
 st.markdown("*Your AI Financial Research Assistant*")
 
 if "messages" not in st.session_state:
